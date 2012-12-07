@@ -6,6 +6,7 @@ class Wheel {
   public float[] sectorAmplitudes;
   public int numSectors;
   public PShape sector;
+  int numberTest = 0;
   
   Wheel(int numSct, int inRad, int xcntr, int ycntr) {
     numSectors = numSct;
@@ -15,7 +16,7 @@ class Wheel {
     }
     innerRadius = inRad;
     offset = 180;
-    smoothness = 18;
+    smoothness = 4;
     xcenter = xcntr;
     ycenter = ycntr;
   }
@@ -46,6 +47,9 @@ class Wheel {
       sector.end(CLOSE);
       rotate(TWO_PI/numSectors);
       shape(sector);
+      numberTest++;
+      print(numberTest + "\n");
+      
     }
     
   }
