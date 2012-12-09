@@ -12,8 +12,8 @@ ParticleSystem particles;
 color particleColour = color(255, 120, 0);
 int numSectors;
 
-Ball[] myBall = new Ball[8];
-int ballHeightCnt = 0; // prevents out of bounds exception
+ICABox[] myICABox = new ICABox[8];
+int boxCounter = 0;
 
 float[][] songAmps;
 float[] songFreqs;
@@ -46,33 +46,33 @@ void setup() {
   particles = new ParticleSystem(new PVector(0, 0));
   
   for(int i = 0; i < 8; i++) {
-    myBall[i] = new Ball(0, (float)(50*i), 20);
+    myICABox[i] = new ICABox((int)i*width/(8),(int)width/8,0);
   }
   
   minim = new Minim(this);
   player = minim.loadFile("data/good_song.wav");
   player.play();
-  
 }
 
 
 void draw() {
-  translate(width/2,height/2);
-  background(60);
+  background(0,0,0);
+  if(boxCounter >= songAmpsLength) boxCounter = 0;
+  for(int i = 0; i < 8; i++) {
+    myICABox[i].update((int)songAmps[i][boxCounter]/100);
+    myICABox[i].display();
+  }
+  boxCounter++;
+  
+  translate(width/2,height/2); //translate after drawing the boxes
+  
   particles.addParticle(particleColour, 6, 0.05);
   particles.run();
   
   for (int i = 0; i < numSectors; i++) {
-    myWheel.setAmplitude(i, random(170, 300));
+    myWheel.setAmplitude(i, random(170, 400));
   }
   myWheel.display();
-
-  if(ballHeightCnt >= songAmpsLength) ballHeightCnt = 0;
-  for(int i = 0; i < 8; i++) {
-    myBall[i].update(50*i, -songAmps[i][ballHeightCnt]/5);
-    myBall[i].display();
-  }
-  ballHeightCnt++;
   
 }
 

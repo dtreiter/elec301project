@@ -36,5 +36,6 @@ class lineWheel {
       line(xInner, yInner, xOuter, yOuter);
     }
   }
-  
+
 }
+
