@@ -15,7 +15,7 @@ class Ball {
   void display() {
     noStroke();
     fill(255);
-    if(yLoc != 0)
+    //if(yLoc != 0)
       ellipse(xLoc, yLoc, radius, radius);
   }
   

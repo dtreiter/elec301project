@@ -7,7 +7,7 @@ class Particle {
   float particleSize, decay;
 
   Particle(PVector l, color clr, float prtclSz, float dcy) {
-    acceleration = new PVector(random(-0.5, 0.5), random(-0.5, 1.0));
+    acceleration = new PVector(random(-0.05, 0.1), random(-0.05, 0.1));
     velocity = new PVector(random(-1, 1), random(-2, 0));
     location = l.get();
     lifespan = 255.0;
@@ -35,7 +35,7 @@ class Particle {
   
   // Is the particle still useful?
   boolean isDead() {
-    if (lifespan < 1.0) return true;
+    if (lifespan < decay) return true;
     else return false;
   }
   
