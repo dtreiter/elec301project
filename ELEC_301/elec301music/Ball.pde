@@ -13,8 +13,10 @@ class Ball {
   }
   
   void display() {
+    noStroke();
     fill(255);
-    ellipse(xLoc, yLoc, radius, radius);
+    if(yLoc != 0)
+      ellipse(xLoc, yLoc, radius, radius);
   }
   
 }

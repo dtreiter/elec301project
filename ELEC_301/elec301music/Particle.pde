@@ -1,4 +1,3 @@
-// A simple Particle class
 class Particle {
   PVector location;
   PVector velocity;
@@ -8,7 +7,7 @@ class Particle {
   float particleSize, decay;
 
   Particle(PVector l, color clr, float prtclSz, float dcy) {
-    acceleration = new PVector(random(-0.05, 0.05), random(-0.05, 0.1));
+    acceleration = new PVector(random(-0.5, 0.5), random(-0.5, 1.0));
     velocity = new PVector(random(-1, 1), random(-2, 0));
     location = l.get();
     lifespan = 255.0;
@@ -22,16 +21,13 @@ class Particle {
     display();
   }
 
-  // Method to update location
   void update() {
     velocity.add(acceleration);
     location.add(velocity);
     lifespan -= decay;
   }
 
-  // Method to display
   void display() {
-    //stroke(colour, lifespan);
     noStroke();
     fill(colour, lifespan);
     ellipse(location.x, location.y, particleSize, particleSize);
