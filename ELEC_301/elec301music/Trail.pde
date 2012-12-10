@@ -1,9 +1,39 @@
 class Trail {
-  float xLoc, speed;
+  float xLoc, yTop, yBottom, decay, speed, lifespan;
+  int thickness;
+  color colour;
   
-  Trail(float xl) {
+  Trail(float xl, float yt, float yb) {
     xLoc = xl;
-    speed = 20.0;
+    yTop = yt;
+    yBottom = yb;
+    decay = 3;
+    speed = 10;
+    lifespan = 255;
+    thickness = 8;
+    colour = color(255);
+  }
+  
+  void run() {
+    update();
+    display();
+  }
+  
+  void update() {
+    yTop += speed;
+    yBottom += speed;
+    lifespan -= decay;
+  }
+  
+  void display() {
+    stroke(colour, lifespan);
+    strokeWeight(thickness);
+    line(xLoc-width/4, yTop-height/2, xLoc-width/4, yBottom-height/2);
+  }
+ 
+  boolean isDead() {
+    if (lifespan < decay) return true;
+    else return false;
   }
   
 }
