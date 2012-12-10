@@ -17,8 +17,8 @@ int numSectors;
 float[] sectorAmps;
 float sectorDecay = 10;
 
-Ball[] myBall;
-int ballHeightCnt = 0; // prevents out of bounds exception
+//Ball[] myBall;
+//int ballHeightCnt = 0; // prevents out of bounds exception
 
 float[][] songAmps;
 float[] songFreqs;
@@ -50,10 +50,10 @@ void setup() {
   myWheel = new lineWheel(numSectors, 100, width/2, height/2);
   particles = new ParticleSystem(new PVector(0, 0));
 
-  myBall = new Ball[songFreqs.length];
-  for (int i = 0; i < myBall.length; i++) {
-    myBall[i] = new Ball(-width/4, (float)(20*i), 10);
-  }
+//  myBall = new Ball[songFreqs.length];
+//  for (int i = 0; i < myBall.length; i++) {
+//    myBall[i] = new Ball(-width/4, 0, 0); // initialize lines
+//  }
 
   minim = new Minim(this);
   player = minim.loadFile("data/good_song.wav");
@@ -68,12 +68,22 @@ void setup() {
 
 void draw() {
   beat.detect(player.mix);
-
   translate(width/2, height/2);
   background(60);
+
+
+  
+//  if (ballHeightCnt >= songAmpsLength) ballHeightCnt -= 1;
+//    for (int i = 0; i < myBall.length; i++) {
+//      myBall[i].update(20*i, 20*songAmps[i][ballHeightCnt]); // Divide height by 5 to prevent from going off screen
+//      myBall[i].display();
+//    }
+//  ballHeightCnt++;
+  
+    
   if (beat.isOnset()) {
     for (int i = 0; i < particlesPerFrame; i++) {
-      particles.addParticle(particleColour, 6, 10);
+      particles.addParticle(particleColour, 6, 10); 
     }
   }
   particles.run();
@@ -92,12 +102,5 @@ void draw() {
     myWheel.setAmplitude(i, lineAmplitude);
   }
   myWheel.display();
-
-  if (ballHeightCnt >= songAmpsLength) ballHeightCnt -= 1;
-  for (int i = 0; i < myBall.length; i++) {
-    myBall[i].update(20*i-width/4, -songAmps[i][ballHeightCnt]/5); // divide height by 5 to prevent from going off screen
-    //myBall[i].display();
-  }
-  ballHeightCnt++;
 }
 

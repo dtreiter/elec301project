@@ -15,7 +15,7 @@ class lineWheel {
     xcenter = xcntr;
     ycenter = ycntr;
     colorDegrees = 240;
-    rotateSpeed = 0;
+    rotateSpeed = -0.4;
   }
   
   public void setAmplitude(int sector, float amplitude) {
