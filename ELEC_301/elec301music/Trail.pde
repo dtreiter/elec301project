@@ -1,5 +1,5 @@
 class Trail {
-  float xLoc, yTop, yBottom, decay, speed, lifespan;
+  float xLoc, yTop, yBottom, decay, speed, lifespan, trailLength;
   int thickness;
   color colour;
   
@@ -7,7 +7,7 @@ class Trail {
     xLoc = xl;
     yTop = yt;
     yBottom = yb;
-    decay = 3;
+    decay = 3; // round(10*pow(2.71, -trailLength/100) );
     speed = 10;
     lifespan = 255;
     thickness = 8;

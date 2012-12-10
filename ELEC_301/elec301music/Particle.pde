@@ -6,9 +6,18 @@ class Particle {
   color colour;
   float particleSize, decay;
 
+  PVector genPVector(float pmin, float pmax) {
+    float randNum, sign;
+    randNum = random(pmin, pmax);
+    sign = random(0, 2);
+    if(sign == 0) sign = -1;
+    else sign = 1;
+    return new PVector(sign*cos(randNum), sign*sin(randNum));
+  }
+
   Particle(PVector l, color clr, float prtclSz, float dcy) {
-    acceleration = new PVector(random(-0.2, 0.25), random(-0.2, 0.25));
-    velocity = new PVector(random(-1, 1), random(-2, 0));
+    acceleration = genPVector(0, TWO_PI);
+    velocity = genPVector(0, TWO_PI);
     location = l.get();
     lifespan = 255.0;
     colour = clr;

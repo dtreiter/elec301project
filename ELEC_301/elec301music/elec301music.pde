@@ -11,8 +11,7 @@ FFT myFFT;
 
 lineWheel myWheel;
 ParticleSystem particles;
-color particleColour = color(150, 120, 0);
-int particlesPerFrame = 10;
+color particleColour = color(255, 255, 255);
 int numSectors;
 float[] sectorAmps;
 float sectorDecay = 10;
@@ -41,7 +40,7 @@ void loadData() {
 
 
 void setup() {
-  size(900, 900, P3D);
+  size(1400, 900, P3D);
   smooth(4);
   colorMode(HSB, 360, 100, 100);
   frameRate(24);
@@ -54,7 +53,7 @@ void setup() {
   minim = new Minim(this);
   player = minim.loadFile("data/good_song.wav");
   player.play();
-  beat = new BeatDetect();
+  beat = new BeatDetect(player.bufferSize(), player.sampleRate());
   myFFT = new FFT(player.bufferSize(), player.sampleRate());
 
   myFFT.forward(player.mix);
@@ -67,10 +66,8 @@ void draw() {
   translate(width/2, height/2);
   background(60);
     
-  if (beat.isOnset()) { // Add particlesPerFrame number of particles if a beat is detected
-    for (int i = 0; i < particlesPerFrame; i++) {
-      particles.addParticle(particleColour, 6, 10);
-    }
+  if (beat.isOnset(4) || beat.isOnset(6)) { // Add particlesPerFrame number of particles if a beat is detected
+    particles.addParticle(particleColour, 1, 14, 300);
   }
   particles.run();
 

@@ -9,8 +9,10 @@ class ParticleSystem {
     particles = new ArrayList<Particle>();
   }
 
-  void addParticle(color colour, float particleSize, float decay) {
-    particles.add(new Particle(origin, colour, particleSize, decay));
+  void addParticle(color colour, float particleSize, float decay, int numParticles) {
+    for(int i = 0; i < numParticles; i++) {
+      particles.add(new Particle(origin, colour, particleSize, decay));
+    }
   }
 
   void run() {
