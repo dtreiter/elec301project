@@ -76,7 +76,7 @@ void draw() {
   float normalizer;
   myFFT.forward(player.mix);
   for (int i = 0; i < numSectors; i++) {
-    normalizer = 45*(i+16)/(numSectors-1);
+    normalizer = 45*(i+5)/(numSectors-1);
     if (myFFT.getBand(i) > sectorAmps[i]) {
       sectorAmps[i] = myFFT.getBand(i);
     }
