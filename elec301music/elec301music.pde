@@ -51,7 +51,7 @@ void setup() {
   trails = new TrailSystem();
 
   minim = new Minim(this);
-  player = minim.loadFile("data/good_song.wav");
+  player = minim.loadFile("data/song.wav");
   player.play();
   beat = new BeatDetect(player.bufferSize(), player.sampleRate());
   myFFT = new FFT(player.bufferSize(), player.sampleRate());
