@@ -1,4 +1,6 @@
-elec301project
-==============
+ELEC 301 Group Project
+Authors: Daniel Reiter, Christian Henry, Spencer Arrasmith, Rene Castro
 
-Elec 301 group project
+Requirements: Processing 2.0+, MATLAB
+
+To Run: 
